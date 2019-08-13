@@ -21,8 +21,13 @@ class my_build_ext(build_ext):
 
 setup(
     cmdclass={'build_ext': my_build_ext},
-    ext_modules=cythonize(Extension(
-        "cRBFkernel",
-        sources=["cRBFkernel.pyx"],
-        language="c++",
-    )))
+    ext_modules=cythonize(
+        Extension(
+            "cRBFkernel",
+            sources=["cRBFkernel.pyx"],
+            language="c++",
+            # extra_compile_args=["-stdlib=libc++"],
+        ),
+        language_level = "3"
+    )
+)
